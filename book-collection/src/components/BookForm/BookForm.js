@@ -2,10 +2,15 @@
 
 import React, { useState } from "react";
 import "./BookForm.css";
-import postAPI from "../../Api/axiosPost";
+import postAPI from "../../Api/axiosPost.js";
 
 const BookForm = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    title: "",
+    author: "",
+    genre: "",
+    yearPublished: "",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +31,12 @@ const BookForm = () => {
       console.error("Error:", error);
     }
 
-    setFormData({});
+    setFormData({
+      title: "",
+      author: "",
+      genre: "",
+      yearPublished: "",
+    });
   };
 
   return (

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import getAPI from "../../Api/axiosGet";
 import "./ViewBook.css"; // Import the CSS file
 
 const ViewBook = () => {
   const [books, setBooks] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchBooks() {
@@ -18,8 +20,8 @@ const ViewBook = () => {
     fetchBooks();
   }, []);
 
-  const handleEdit = (bookId) => {
-    console.log("Editing book with id:", bookId);
+  const handleEdit = (book) => {
+    navigate("/edit-form", { state: { book } });
   };
 
   const handleDelete = (bookId) => {
@@ -38,10 +40,7 @@ const ViewBook = () => {
               <p>Genre: {book.genre}</p>
               <p>Year Published: {book.yearPublished}</p>
               <div className="book-buttons">
-                <button
-                  onClick={() => handleEdit(book._id)}
-                  className="edit-btn"
-                >
+                <button onClick={() => handleEdit(book)} className="edit-btn">
                   Edit
                 </button>
                 <button
@@ -52,7 +51,6 @@ const ViewBook = () => {
                 </button>
               </div>
             </div>
-            {/* Add a new row after every 3rd book */}
             {(index + 1) % 3 === 0 && <div className="clearfix" />}
           </React.Fragment>
         ))}
