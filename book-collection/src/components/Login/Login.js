@@ -1,7 +1,6 @@
-// src/components/BookForm.js
-
 // src/components/Login.js
 import React, { useState } from "react";
+import postAPI from "../../Api/axiosPost";
 import "./Login.css";
 
 const Login = ({ onSignupClick }) => {
@@ -18,9 +17,27 @@ const Login = ({ onSignupClick }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
+
+    try {
+      const response = await postAPI("/login", formData, false);
+      console.log("RESPONSE", response);
+      if (!response.hasError) {
+        console.log("Login successful Message:", response.data.message);
+
+        localStorage.setItem(
+          "accessToken",
+          JSON.stringify(response.data.token)
+        );
+      } else {
+        console.error("Login Error:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Login Error:", error);
+    }
+
     setFormData({
       email: "",
       password: "",

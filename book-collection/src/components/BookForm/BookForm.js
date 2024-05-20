@@ -1,14 +1,11 @@
 // src/components/BookForm.js
+
 import React, { useState } from "react";
 import "./BookForm.css";
+import postAPI from "../../Api/axiosPost";
 
 const BookForm = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-    author: "",
-    genre: "",
-    yearPublished: "",
-  });
+  const [formData, setFormData] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,17 +15,18 @@ const BookForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    setFormData({
-      title: "",
-      author: "",
-      genre: "",
-      yearPublished: "",
-    });
 
-    console.log(formData);
+    try {
+      const response = await postAPI("/book ", formData);
+
+      console.log("Response:", response.data.message);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+
+    setFormData({});
   };
 
   return (
