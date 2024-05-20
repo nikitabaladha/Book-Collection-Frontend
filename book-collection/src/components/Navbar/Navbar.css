@@ -1,0 +1,53 @@
+#brand-logo {
+  width: 130px;
+}
+
+.navbar-nav .nav-link {
+  color: #0d4278;
+  font-family: "Playfair Display", sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+  margin-right: 20px;
+  border-bottom: 3px solid transparent;
+}
+
+.navbar-nav .nav-link:hover {
+  border-bottom: 3px solid #0d4278;
+}
+
+.btn-login,
+.btn-signup {
+  font-family: "Playfair Display", sans-serif;
+  color: #0d4278;
+  border-color: #0d4278;
+  box-shadow: 0 0 10px rgba(13, 66, 120, 0.5);
+}
+
+.btn-login {
+  margin-right: 20px;
+}
+
+.btn-signup {
+  margin-right: 40px;
+}
+.btn-login:hover,
+.btn-signup:hover {
+  background-color: #0d4278;
+  color: white;
+}
+
+/* Navbar.css */
+.modal-header {
+  background-color: #effafc;
+  border-bottom: 1px solid #90a5ba;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-title {
+  color: #0d4278;
+  font-size: 24px;
+  font-family: "Playfair Display", sans-serif;
+}
