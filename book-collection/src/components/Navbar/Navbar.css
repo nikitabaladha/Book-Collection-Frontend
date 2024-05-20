@@ -15,28 +15,29 @@
   border-bottom: 3px solid #0d4278;
 }
 
-.btn-login,
-.btn-signup {
+.login-button,
+.signup-button {
   font-family: "Playfair Display", sans-serif;
   color: #0d4278;
   border-color: #0d4278;
   box-shadow: 0 0 10px rgba(13, 66, 120, 0.5);
+  border-radius: 5px;
 }
 
-.btn-login {
+.login-button {
   margin-right: 20px;
 }
 
-.btn-signup {
+.signup-button {
   margin-right: 40px;
 }
-.btn-login:hover,
-.btn-signup:hover {
+
+.login-button:hover,
+.signup-button:hover {
   background-color: #0d4278;
   color: white;
 }
 
-/* Navbar.css */
 .modal-header {
   background-color: #effafc;
   border-bottom: 1px solid #90a5ba;
