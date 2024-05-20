@@ -1,8 +1,10 @@
 // src/components/BookForm.js
+
+// src/components/Login.js
 import React, { useState } from "react";
 import "./Login.css";
 
-const Login = () => {
+const Login = ({ onSignupClick }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -55,6 +57,16 @@ const Login = () => {
         <button type="submit" className="btn btn-primary mt-2">
           Submit
         </button>
+        <div className="mt-2">
+          Don't have an account?{" "}
+          <span
+            className="text-primary"
+            style={{ cursor: "pointer" }}
+            onClick={onSignupClick}
+          >
+            Signup
+          </span>
+        </div>
       </form>
     </div>
   );

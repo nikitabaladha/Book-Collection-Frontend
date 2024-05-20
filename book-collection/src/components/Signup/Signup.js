@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "./Signup.css";
 
-const Signup = () => {
+const Signup = ({ onLoginClick }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -83,6 +83,16 @@ const Signup = () => {
         <button type="submit" className="btn btn-primary mt-2">
           Submit
         </button>
+        <div className="mt-2">
+          Already have an account?{" "}
+          <span
+            className="text-primary"
+            style={{ cursor: "pointer" }}
+            onClick={onLoginClick}
+          >
+            Login
+          </span>
+        </div>
       </form>
     </div>
   );
