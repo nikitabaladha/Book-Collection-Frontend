@@ -1,10 +1,9 @@
 // src/components/BookForm.js
 import React, { useState } from "react";
-
 import "./Signup.css";
 import postAPI from "../../Api/axiosPost.js";
 
-const Signup = ({ onLoginClick }) => {
+const Signup = ({ onLoginClick, onSuccess }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -27,21 +26,24 @@ const Signup = ({ onLoginClick }) => {
       const response = await postAPI("/signup", formData, false);
 
       if (!response.hasError) {
+        alert(response.data.message);
         console.log("Signup successful Message:", response.data.message);
+        onSuccess();
       } else {
-        console.error("Signup Error:", response.message);
+        alert(response.data.message);
+        console.error("Signup Error 1:", response.data.message);
       }
     } catch (error) {
-      console.error("Signup Error:", error);
+      if (error?.response?.data?.message) {
+        console.error("Signup Error 2:", error.response.data.message);
+        alert(error.response.data.message);
+      } else {
+        console.error("Signup Error 3:", error);
+        alert("An unexpected error occurred. Please try again.");
+      }
     }
-
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-    });
   };
+
   return (
     <div className="container mt-4">
       <form onSubmit={handleSubmit}>

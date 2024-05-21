@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import "./BookForm.css";
 import postAPI from "../../Api/axiosPost.js";
 
-const BookForm = () => {
+const BookForm = ({ onSuccess }) => {
   const [formData, setFormData] = useState({
     title: "",
     author: "",
@@ -26,17 +26,30 @@ const BookForm = () => {
     try {
       const response = await postAPI("/book ", formData);
 
-      console.log("Response:", response.data.message);
+      if (!response.hasError) {
+        alert(response.data.message);
+        console.log(
+          "Book successful submission Message:",
+          response.data.message
+        );
+        onSuccess();
+      } else {
+        alert(response.data.message);
+        console.error("Submission Error 1:", response.data.message);
+      }
     } catch (error) {
-      console.error("Error:", error);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        console.error("Submission Error 2:", error.response.data.message);
+        alert(error.response.data.message);
+      } else {
+        console.error("Submission Error 3:", error);
+        alert("An unexpected error occurred. Please try again.");
+      }
     }
-
-    setFormData({
-      title: "",
-      author: "",
-      genre: "",
-      yearPublished: "",
-    });
   };
 
   return (

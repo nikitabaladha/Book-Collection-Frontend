@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import postAPI from "../../Api/axiosPost";
 import "./Login.css";
 
-const Login = ({ onSignupClick }) => {
+const Login = ({ onSignupClick, onSuccess }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -19,29 +19,31 @@ const Login = ({ onSignupClick }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
 
     try {
       const response = await postAPI("/login", formData, false);
-      console.log("RESPONSE", response);
-      if (!response.hasError) {
-        console.log("Login successful Message:", response.data.message);
 
+      if (!response.hasError) {
+        alert(response.data.message);
+        console.log("Login successful Message:", response.data.message);
         localStorage.setItem(
           "accessToken",
           JSON.stringify(response.data.token)
         );
+        onSuccess();
       } else {
-        console.error("Login Error:", response.data.message);
+        console.error("Login Error1:", response.data.message);
+        alert(response.data.message);
       }
     } catch (error) {
-      console.error("Login Error:", error);
+      if (error?.response?.data?.message) {
+        console.error("Signup Error 2:", error.response.data.message);
+        alert(error.response.data.message);
+      } else {
+        console.error("Login Error3:", error);
+        alert("An unexpected error occurred. Please try again.");
+      }
     }
-
-    setFormData({
-      email: "",
-      password: "",
-    });
   };
 
   return (

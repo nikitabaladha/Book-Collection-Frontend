@@ -14,3 +14,18 @@ input {
 btn btn-primary {
   font-family: "Times New Roman", Times, serif;
 }
+
+.modal-header {
+  background-color: #effafc;
+  border-bottom: 1px solid #90a5ba;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-title {
+  color: #0d4278;
+  font-size: 24px;
+  font-family: "Playfair Display", sans-serif;
+}

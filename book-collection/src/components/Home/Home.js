@@ -11,8 +11,10 @@ const Home = () => {
       <div className="container-fluid background-image" id="mainDiv">
         <div>
           <h1 className="welcome">Welcome to Word World</h1>
-          <h2>A writer only begins a book.</h2>
-          <h2>A reader finishes it.</h2>
+          <div className="quotes">
+            <h2>A writer only begins a book.</h2>
+            <h2>A reader finishes it.</h2>
+          </div>
         </div>
       </div>
     </div>
