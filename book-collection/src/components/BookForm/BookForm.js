@@ -12,12 +12,28 @@ const BookForm = ({ onSuccess }) => {
     yearPublished: "",
   });
 
+  const [formErrors, setFormErrors] = useState({
+    title: "",
+    author: "",
+    genre: "",
+    yearPublished: "",
+  });
+
+  const [generalError, setGeneralError] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
+
+    setFormErrors({
+      ...formErrors,
+      [name]: "",
+    });
+
+    setGeneralError("");
   };
 
   const handleSubmit = async (e) => {
@@ -34,7 +50,7 @@ const BookForm = ({ onSuccess }) => {
         );
         onSuccess();
       } else {
-        alert(response.data.message);
+        setGeneralError(response.data.message);
         console.error("Submission Error 1:", response.data.message);
       }
     } catch (error) {
@@ -44,10 +60,12 @@ const BookForm = ({ onSuccess }) => {
         error.response.data.message
       ) {
         console.error("Submission Error 2:", error.response.data.message);
-        alert(error.response.data.message);
+
+        setGeneralError(error.response.data.message);
       } else {
         console.error("Submission Error 3:", error);
-        alert("An unexpected error occurred. Please try again.");
+
+        setGeneralError("An unexpected error occurred. Please try again.");
       }
     }
   };
@@ -66,6 +84,7 @@ const BookForm = ({ onSuccess }) => {
             onChange={handleChange}
             required
           />
+          {formErrors.title && <p className="error">{formErrors.title}</p>}
         </div>
         <div className="form-group">
           <label htmlFor="author">Author</label>
@@ -78,6 +97,7 @@ const BookForm = ({ onSuccess }) => {
             onChange={handleChange}
             required
           />
+          {formErrors.author && <p className="error">{formErrors.author}</p>}
         </div>
         <div className="form-group">
           <label htmlFor="genre">Genre</label>
@@ -90,6 +110,7 @@ const BookForm = ({ onSuccess }) => {
             onChange={handleChange}
             required
           />
+          {formErrors.genre && <p className="error">{formErrors.genre}</p>}
         </div>
         <div className="form-group">
           <label htmlFor="yearPublished">Year Published</label>
@@ -102,6 +123,10 @@ const BookForm = ({ onSuccess }) => {
             onChange={handleChange}
             required
           />
+          {formErrors.yearPublished && (
+            <p className="error">{formErrors.yearPublished}</p>
+          )}
+          {generalError && <p className="error">{generalError}</p>}
         </div>
         <button type="submit" className="btn btn-primary mt-2">
           Submit

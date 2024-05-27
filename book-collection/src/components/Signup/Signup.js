@@ -1,4 +1,4 @@
-// src/components/BookForm.js
+// src/components/Signup.js
 import React, { useState } from "react";
 import "./Signup.css";
 import postAPI from "../../Api/axiosPost.js";
@@ -11,12 +11,27 @@ const Signup = ({ onLoginClick, onSuccess }) => {
     password: "",
   });
 
+  const [formErrors, setFormErrors] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [generalError, setGeneralError] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormData({
       ...formData,
       [name]: value,
     });
+
+    setFormErrors({
+      ...formErrors,
+      [name]: "",
+    });
+
+    setGeneralError("");
   };
 
   const handleSubmit = async (e) => {
@@ -30,16 +45,18 @@ const Signup = ({ onLoginClick, onSuccess }) => {
         console.log("Signup successful Message:", response.data.message);
         onSuccess();
       } else {
-        alert(response.data.message);
+        setGeneralError(response.data.message);
         console.error("Signup Error 1:", response.data.message);
       }
     } catch (error) {
       if (error?.response?.data?.message) {
         console.error("Signup Error 2:", error.response.data.message);
-        alert(error.response.data.message);
+
+        setGeneralError(error.response.data.message);
       } else {
         console.error("Signup Error 3:", error);
-        alert("An unexpected error occurred. Please try again.");
+
+        setGeneralError("An unexpected error occurred. Please try again.");
       }
     }
   };
@@ -58,7 +75,11 @@ const Signup = ({ onLoginClick, onSuccess }) => {
             onChange={handleChange}
             required
           />
+          {formErrors.firstName && (
+            <p className="error">{formErrors.firstName}</p>
+          )}
         </div>
+
         <div className="form-group">
           <label htmlFor="lastName">Last Name</label>
           <input
@@ -70,7 +91,11 @@ const Signup = ({ onLoginClick, onSuccess }) => {
             onChange={handleChange}
             required
           />
+          {formErrors.lastName && (
+            <p className="error">{formErrors.lastName}</p>
+          )}
         </div>
+
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
@@ -82,7 +107,9 @@ const Signup = ({ onLoginClick, onSuccess }) => {
             onChange={handleChange}
             required
           />
+          {formErrors.email && <p className="error">{formErrors.email}</p>}
         </div>
+
         <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
@@ -94,7 +121,12 @@ const Signup = ({ onLoginClick, onSuccess }) => {
             onChange={handleChange}
             required
           />
+          {formErrors.password && (
+            <p className="error">{formErrors.password}</p>
+          )}
         </div>
+
+        {generalError && <p className="error">{generalError}</p>}
         <button type="submit" className="btn btn-primary mt-2">
           Submit
         </button>

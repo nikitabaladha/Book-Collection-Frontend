@@ -14,3 +14,9 @@ input {
 btn btn-primary {
   font-family: "Times New Roman", Times, serif;
 }
+
+.error {
+  color: red;
+  margin-top: 5px;
+  text-transform: capitalize;
+}

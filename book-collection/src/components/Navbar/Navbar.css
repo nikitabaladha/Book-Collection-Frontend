@@ -26,6 +26,7 @@
 }
 
 .login-button,
+.logout-button,
 .signup-button {
   font-family: "Playfair Display", sans-serif;
   color: #0d4278;
@@ -34,7 +35,8 @@
   border-radius: 5px;
 }
 
-.login-button {
+.login-button,
+.logout-button {
   margin-right: 20px;
 }
 
@@ -43,6 +45,7 @@
 }
 
 .login-button:hover,
+.logout-button:hover,
 .signup-button:hover {
   background-color: #0d4278;
   color: white;
@@ -74,7 +77,7 @@
     margin-right: 10px;
   }
   .login-button,
-  .signup-button {
+  .logout-button .signup-button {
     font-size: 12px;
     margin-right: 10px;
     padding: 3px 8px;

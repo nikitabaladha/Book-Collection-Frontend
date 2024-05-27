@@ -14,12 +14,16 @@ const EditModal = ({ book, onClose, updateBookList: onUpdate }) => {
     _id: book._id,
   });
 
+  const [generalError, setGeneralError] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEditedDetails((prevDetails) => ({
       ...prevDetails,
       [name]: value,
     }));
+
+    setGeneralError("");
   };
 
   const handleEditSubmit = async (e) => {
@@ -30,7 +34,7 @@ const EditModal = ({ book, onClose, updateBookList: onUpdate }) => {
       const response = await putAPI(`/book/${book._id}`, editedBook);
 
       if (response.data.hasError) {
-        alert("Book Edition Error: " + response.data.message);
+        setGeneralError(response.data.message);
         console.error("Book Edition Error:", response.data.message);
       } else {
         alert(response.data.message);
@@ -46,10 +50,11 @@ const EditModal = ({ book, onClose, updateBookList: onUpdate }) => {
         error.response.data.message
       ) {
         console.error("Book Edition Error:", error.response.data.message);
-        alert("Book Edition Error: " + error.response.data.message);
+
+        setGeneralError(error.response.data.message);
       } else {
         console.error("Book Edition Error:", error);
-        alert("An unexpected error occurred. Please try again.");
+        setGeneralError("An unexpected error occurred. Please try again.");
       }
     }
   };
@@ -105,6 +110,7 @@ const EditModal = ({ book, onClose, updateBookList: onUpdate }) => {
               required
             />
           </label>
+          {generalError && <p className="error">{generalError}</p>}
           <button type="submit" className="btn btn-primary mt-2">
             Save
           </button>

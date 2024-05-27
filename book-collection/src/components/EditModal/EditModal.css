@@ -29,3 +29,9 @@ btn btn-primary {
   font-size: 24px;
   font-family: "Playfair Display", sans-serif;
 }
+
+.error {
+  color: red;
+  margin-top: 5px;
+  text-transform: capitalize;
+}

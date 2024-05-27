@@ -1,6 +1,6 @@
-// components / Navbar / Navbar.js;
+// src/components/Navbar/Navbar.js
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import "./Navbar.css";
@@ -14,29 +14,33 @@ const Navbar = () => {
   const [showAddBookModal, setShowAddBookModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleAddBookModalClose = () => setShowAddBookModal(false);
-  const handleAddBookModalShow = () => setShowAddBookModal(true);
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
-  const handleLoginModalClose = () => setShowLoginModal(false);
-  const handleLoginModalShow = () => setShowLoginModal(true);
-
-  const handleSignupModalClose = () => setShowSignupModal(false);
-  const handleSignupModalShow = () => setShowSignupModal(true);
+  const handleModalClose = (setModalState) => () => setModalState(false);
+  const handleModalShow = (setModalState) => () => setModalState(true);
 
   const handleSignupSuccess = () => {
     console.log("Signup successful");
-    handleSignupModalClose();
+    setShowSignupModal(false);
+    setShowLoginModal(true);
   };
 
   const handleLoginSuccess = () => {
     console.log("Login successful");
-    handleLoginModalClose();
+    setShowLoginModal(false);
+    setIsLoggedIn(true);
   };
 
   const handleAddBookSuccess = () => {
     console.log("Book submission successful");
-    handleAddBookModalClose();
+    setShowAddBookModal(false);
   };
 
   const handleViewBookSuccess = () => {
@@ -44,9 +48,14 @@ const Navbar = () => {
     if (!token) {
       alert("Please log in to view books.");
       return;
-    } else {
-      navigate("/view-book");
     }
+    navigate("/view-book");
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    setIsLoggedIn(false);
+    navigate("/");
   };
 
   return (
@@ -55,7 +64,6 @@ const Navbar = () => {
         <Link className="navbar-brand" to="/">
           <img id="brand-logo" src={logoImage} alt="Logo" />
         </Link>
-
         <button
           className="navbar-toggler"
           type="button"
@@ -65,9 +73,8 @@ const Navbar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-
         <div
           className="collapse navbar-collapse middlePart"
           id="navbarSupportedContent"
@@ -79,7 +86,10 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <button className="nav-link" onClick={handleAddBookModalShow}>
+              <button
+                className="nav-link"
+                onClick={handleModalShow(setShowAddBookModal)}
+              >
                 Add Book
               </button>
             </li>
@@ -93,71 +103,86 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-
-          <div className="justify-content-end">
-            {" "}
-            <ul className="navbar-nav mb-2 mb-lg-0">
+          <ul className="navbar-nav mb-2 mb-lg-0">
+            {isLoggedIn ? (
               <li className="nav-item">
                 <button
-                  className="nav-link login-button"
-                  onClick={handleLoginModalShow}
+                  className="nav-link logout-button"
+                  onClick={handleLogout}
                 >
-                  Login
+                  Logout
                 </button>
               </li>
-              <li className="nav-item">
-                <button
-                  className="nav-link signup-button"
-                  onClick={handleSignupModalShow}
-                >
-                  Signup
-                </button>
-              </li>
-            </ul>
-          </div>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <button
+                    className="nav-link login-button"
+                    onClick={handleModalShow(setShowLoginModal)}
+                  >
+                    Login
+                  </button>
+                </li>
+                <li className="nav-item">
+                  <button
+                    className="nav-link signup-button"
+                    onClick={handleModalShow(setShowSignupModal)}
+                  >
+                    Signup
+                  </button>
+                </li>
+              </>
+            )}
+          </ul>
         </div>
       </div>
 
-      <Modal show={showAddBookModal} onHide={handleAddBookModalClose}>
+      <Modal
+        show={showAddBookModal}
+        onHide={handleModalClose(setShowAddBookModal)}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Add New Book</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <BookForm
             onSuccess={handleAddBookSuccess}
-            onClose={handleAddBookModalClose}
+            onClose={handleModalClose(setShowAddBookModal)}
           />
         </Modal.Body>
       </Modal>
 
-      <Modal show={showLoginModal} onHide={handleLoginModalClose}>
+      <Modal show={showLoginModal} onHide={handleModalClose(setShowLoginModal)}>
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Login
             onSignupClick={() => {
-              handleLoginModalClose();
-              handleSignupModalShow();
+              setShowLoginModal(false);
+              setShowSignupModal(true);
             }}
             onSuccess={handleLoginSuccess}
-            onClose={handleLoginModalClose}
+            onClose={handleModalClose(setShowLoginModal)}
           />
         </Modal.Body>
       </Modal>
 
-      <Modal show={showSignupModal} onHide={handleSignupModalClose}>
+      <Modal
+        show={showSignupModal}
+        onHide={handleModalClose(setShowSignupModal)}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Signup</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Signup
             onLoginClick={() => {
-              handleSignupModalClose();
-              handleLoginModalShow();
+              setShowSignupModal(false);
+              setShowLoginModal(true);
             }}
             onSuccess={handleSignupSuccess}
-            onClose={handleSignupModalClose}
+            onClose={handleModalClose(setShowSignupModal)}
           />
         </Modal.Body>
       </Modal>
