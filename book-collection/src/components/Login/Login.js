@@ -41,6 +41,7 @@ const Login = ({ onSignupClick, onSuccess }) => {
       if (!response.hasError) {
         alert(response.data.message);
         console.log("Login successful Message:", response.data.message);
+
         localStorage.setItem(
           "accessToken",
           JSON.stringify(response.data.token)

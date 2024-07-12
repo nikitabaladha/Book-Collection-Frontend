@@ -28,6 +28,7 @@ const EditModal = ({ book, onClose, updateBookList: onUpdate }) => {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const { _id, ...editedBook } = editedDetails;
 
@@ -35,6 +36,7 @@ const EditModal = ({ book, onClose, updateBookList: onUpdate }) => {
 
       if (response.data.hasError) {
         setGeneralError(response.data.message);
+
         console.error("Book Edition Error:", response.data.message);
       } else {
         alert(response.data.message);

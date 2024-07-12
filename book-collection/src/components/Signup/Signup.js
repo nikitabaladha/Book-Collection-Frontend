@@ -36,6 +36,7 @@ const Signup = ({ onLoginClick, onSuccess }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     console.log(formData);
     try {
       const response = await postAPI("/signup", formData, false);
