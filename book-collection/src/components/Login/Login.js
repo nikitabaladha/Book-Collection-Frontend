@@ -36,7 +36,7 @@ const Login = ({ onSignupClick, onSuccess }) => {
     e.preventDefault();
 
     try {
-      const response = await postAPI("/login", formData, false);
+      const response = await postAPI("/login", formData, null, false);
 
       if (!response.hasError) {
         alert(response.data.message);

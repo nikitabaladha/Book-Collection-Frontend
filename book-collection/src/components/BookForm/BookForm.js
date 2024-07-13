@@ -6,6 +6,7 @@ import postAPI from "../../Api/axiosPost.js";
 
 const BookForm = ({ onSuccess }) => {
   const [formData, setFormData] = useState({
+    coverImage: null,
     title: "",
     author: "",
     genre: "",
@@ -36,11 +37,31 @@ const BookForm = ({ onSuccess }) => {
     setGeneralError("");
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFormData({
+      ...formData,
+      coverImage: file,
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await postAPI("/book ", formData);
+      debugger;
+      const formDataObj = new FormData();
+      formDataObj.append("title", formData.title);
+      formDataObj.append("author", formData.author);
+      formDataObj.append("genre", formData.genre);
+      formDataObj.append("yearPublished", formData.yearPublished);
+      formDataObj.append("coverImage", formData.coverImage);
+
+      const response = await postAPI("/book ", formDataObj, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       if (!response.hasError) {
         alert(response.data.message);
@@ -73,6 +94,18 @@ const BookForm = ({ onSuccess }) => {
   return (
     <div className="container mt-4">
       <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="coverImage">Cover Image</label>
+          <input
+            type="file"
+            className="form-control-file"
+            id="coverImage"
+            name="coverImage"
+            accept="image/*"
+            onChange={handleFileChange}
+            required
+          />
+        </div>
         <div className="form-group">
           <label htmlFor="title">Title</label>
           <input

@@ -43,13 +43,12 @@ const Navbar = () => {
     setShowAddBookModal(false);
   };
 
-  const handleViewBookSuccess = () => {
-    const token = localStorage.getItem("accessToken");
-    if (!token) {
-      alert("Please log in to view books.");
-      return;
+  const handleViewBookSuccess = (e) => {
+    if (!isLoggedIn) {
+      return "/not-found";
+    } else {
+      return "/view-book";
     }
-    navigate("/view-book");
   };
 
   const handleLogout = () => {
@@ -94,11 +93,7 @@ const Navbar = () => {
               </button>
             </li>
             <li className="nav-item">
-              <Link
-                className="nav-link"
-                onClick={handleViewBookSuccess}
-                to="/view-book"
-              >
+              <Link className="nav-link" to={handleViewBookSuccess()}>
                 View Book
               </Link>
             </li>

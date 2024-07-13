@@ -11,18 +11,17 @@ const axios = Axios.create({
   },
 });
 
-async function postAPI(url, payload, headers = {}, isPrivate = true) {
+async function postAPI(url, payload, options = {}, isPrivate = true) {
   try {
-    let accessToken;
+    if (options && !options.headers) options.headers = {};
+
     if (isPrivate) {
-      accessToken = JSON.parse(localStorage.getItem("accessToken"));
+      options.headers.access_token = JSON.parse(
+        localStorage.getItem("accessToken")
+      );
     }
 
-    const response = await axios.post(url, payload, {
-      headers: {
-        access_token: accessToken,
-      },
-    });
+    const response = await axios.post(url, payload, options);
 
     if ((response.status = 200)) {
       return {

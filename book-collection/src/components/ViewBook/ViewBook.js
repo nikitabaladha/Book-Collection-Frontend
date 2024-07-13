@@ -1,7 +1,9 @@
+// ViewBook.js
+
 import React, { useState, useEffect } from "react";
 import getAPI from "../../Api/axiosGet";
 import deleteAPI from "../../Api/axiosDelete";
-import "./ViewBook.css";
+import "./ViewBook.css"; // Import your CSS file
 import EditModal from "../EditModal/EditModal.js";
 
 const ViewBook = () => {
@@ -23,7 +25,6 @@ const ViewBook = () => {
   }, []);
 
   const handleEdit = (book) => {
-    console.log("Edit button clicked");
     setSelectedBook(book);
     setIsModalOpen(true);
   };
@@ -52,40 +53,63 @@ const ViewBook = () => {
 
   const updateBookList = (updatedBook) => {
     setBooks((prevBooks) =>
-      prevBooks.map((book) => {
-        return book._id === updatedBook._id ? updatedBook : book;
-      })
+      prevBooks.map((book) =>
+        book._id === updatedBook._id ? updatedBook : book
+      )
     );
   };
 
   return (
     <div className="container mt-4">
-      <h3>All Books</h3>
-      <div className="books-list">
-        {books.map((book, index) => (
-          <div key={book._id} className="book-card">
-            <div className="book-header">
-              <h3>{book.title}</h3>
-            </div>
-            <div className="book-content">
-              <p>Author: {book.author}</p>
-              <p>Genre: {book.genre}</p>
-              <p>Year Published: {book.yearPublished}</p>
-            </div>
-            <div className="book-footer">
-              <button onClick={() => handleEdit(book)} className="edit-btn">
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(book._id)}
-                className="delete-btn"
-              >
-                Delete
-              </button>
+      <h3 className="heading">All Your books are here</h3>
+      <div className="row justify-content-center">
+        {books.map((book) => (
+          <div key={book._id} className="col-xs-12 col-md-3 col-sm-6">
+            <div className="card my-hover-effect">
+              {book.coverImage && (
+                <img
+                  src={book.coverImage}
+                  alt={book.title}
+                  className="card-img-top"
+                />
+              )}
+              <div className="card-body">
+                <h5 className="card-title">{book.title}</h5>
+                <p className="small-text">
+                  {" "}
+                  <span className="card-text"> Author : </span>
+                  <span className="inner-text">{book.author}</span>{" "}
+                </p>
+                <p className="small-text">
+                  {" "}
+                  <span className="card-text">Genre : </span>
+                  {book.genre}
+                </p>
+                <p className="small-text">
+                  {" "}
+                  <span className="card-text"> Year Published : </span>
+                  {book.yearPublished}
+                </p>
+                <div className="d-flex justify-content-between">
+                  <button
+                    onClick={() => handleEdit(book)}
+                    className="btn btn-primary"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(book._id)}
+                    className="btn btn-danger"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         ))}
       </div>
+
       {isModalOpen && (
         <EditModal
           book={selectedBook}
