@@ -1,8 +1,10 @@
-// components/Home.js
-
 import React from "react";
 import "./Home.css";
+
 import Navbar from "../Navbar/Navbar.js";
+import Genre from "../Genre/Genre.js";
+import Footer from "../Footer/Footer.js";
+import About from "../About/About.js";
 
 const Home = () => {
   return (
@@ -17,6 +19,11 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <Genre />
+      <About />
+
+      <Footer />
     </div>
   );
 };

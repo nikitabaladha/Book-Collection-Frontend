@@ -49,7 +49,6 @@ const BookForm = ({ onSuccess }) => {
     e.preventDefault();
 
     try {
-      debugger;
       const formDataObj = new FormData();
       formDataObj.append("title", formData.title);
       formDataObj.append("author", formData.author);

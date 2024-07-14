@@ -11,6 +11,7 @@
   border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #effafc;
 }
 
 .card-img-top {
@@ -54,7 +55,7 @@
 }
 
 .card-body {
-  padding: 10px 10px 0 10px;
+  padding: 10px 35px 0px 35px;
 }
 
 .card-title {

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import getAPI from "../../Api/axiosGet";
 import deleteAPI from "../../Api/axiosDelete";
-import "./ViewBook.css"; // Import your CSS file
+import "./ViewBook.css";
 import EditModal from "../EditModal/EditModal.js";
 
 const ViewBook = () => {

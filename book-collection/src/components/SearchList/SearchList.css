@@ -27,6 +27,23 @@
   font-size: 12px;
 }
 
+.notfound-container {
+  text-align: center;
+  margin-top: 20px;
+  height: 500px;
+  text-align: center;
+  justify-content: center;
+}
+
+.bookshelf-img {
+  width: 30%;
+  max-width: 150px;
+  display: block;
+  margin: 0 auto;
+  height: 20%;
+  margin-bottom: 20px;
+}
+
 .btn-primary {
   background-color: green;
   border: none;
@@ -75,4 +92,9 @@
 .small-text {
   font-size: 14px;
   margin-bottom: 5px;
+}
+
+.message {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: bold;
 }

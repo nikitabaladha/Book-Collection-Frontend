@@ -1,23 +1,16 @@
 .notfound-container {
   text-align: center;
   margin-top: 20px;
-
-  height: calc(100vh - 60px);
-
+  height: 500px;
   text-align: center;
   justify-content: center;
 }
 
-.bookshelf-img {
-  width: 30%;
-  max-width: 150px;
-  display: block;
-  margin: 0 auto;
-  height: 20%;
-  margin-bottom: 20px;
-}
-
 .message {
-  font-size: 1.2em;
-  color: #333;
+  font-size: 1.6em;
+  color: #0d4278;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: bold;
+  padding-bottom: 20px;
+  display: block;
 }
