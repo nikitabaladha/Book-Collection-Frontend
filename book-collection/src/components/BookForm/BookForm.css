@@ -20,3 +20,13 @@ btn btn-primary {
   margin-top: 5px;
   text-transform: capitalize;
 }
+
+#submit {
+  background-color: blue;
+  color: white;
+}
+
+#submit:hover {
+  background-color: #0d4278;
+  color: white;
+}

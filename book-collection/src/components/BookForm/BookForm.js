@@ -161,7 +161,7 @@ const BookForm = ({ onSuccess }) => {
           )}
           {generalError && <p className="error">{generalError}</p>}
         </div>
-        <button type="submit" className="btn btn-primary mt-2">
+        <button type="submit" id="submit" className="btn btn-primary mt-2">
           Submit
         </button>
       </form>

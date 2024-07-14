@@ -94,7 +94,7 @@ const Login = ({ onSignupClick, onSuccess }) => {
           )}
         </div>
         {generalError && <p className="error">{generalError}</p>}
-        <button type="submit" className="btn btn-primary mt-2">
+        <button type="submit" id="submit" className="btn btn-primary mt-2">
           Submit
         </button>
         <div className="mt-2">
