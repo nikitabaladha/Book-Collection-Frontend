@@ -7,7 +7,7 @@ import BookForm from "./components/BookForm/BookForm";
 import ViewBook from "./components/ViewBook/ViewBook";
 import NotFound from "./components/NotFound/NotFound.js";
 import SearchList from "./components/SearchList/SearchList.js";
-
+import Books from "./components/Books/Books.js";
 const App = () => {
   return (
     <BrowserRouter>
@@ -17,6 +17,7 @@ const App = () => {
         <Route path="/view-book" element={<ViewBook />} />
         <Route path="/not-found" element={<NotFound />} />
         <Route path="/search" element={<SearchList />} />
+        <Route path="/books" element={<Books />} />
       </Routes>
     </BrowserRouter>
   );
