@@ -52,6 +52,7 @@ const ViewBook = () => {
   };
 
   const updateBookList = (updatedBook) => {
+    debugger;
     setBooks((prevBooks) =>
       prevBooks.map((book) =>
         book._id === updatedBook._id ? updatedBook : book

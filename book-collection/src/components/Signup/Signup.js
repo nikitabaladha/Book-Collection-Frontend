@@ -39,7 +39,7 @@ const Signup = ({ onLoginClick, onSuccess }) => {
 
     console.log(formData);
     try {
-      const response = await postAPI("/signup", formData, false);
+      const response = await postAPI("/signup", formData, {}, false);
 
       if (!response.hasError) {
         alert(response.data.message);

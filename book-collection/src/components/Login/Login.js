@@ -1,4 +1,3 @@
-// src/components/Login/Login.js
 import React, { useState } from "react";
 import postAPI from "../../Api/axiosPost";
 import "./Login.css";
@@ -40,6 +39,7 @@ const Login = ({ onSignupClick, onSuccess }) => {
 
       if (!response.hasError) {
         alert(response.data.message);
+
         console.log("Login successful Message:", response.data.message);
 
         localStorage.setItem(
