@@ -94,6 +94,16 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
+              <a className="nav-link" href="#aboutUs">
+                About
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#footer">
+                Contact
+              </a>
+            </li>
+            <li className="nav-item">
               <button
                 className="nav-link"
                 onClick={handleModalShow(setShowAddBookModal)}

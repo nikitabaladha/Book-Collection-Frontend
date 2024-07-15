@@ -5,7 +5,7 @@ import "./Footer.css";
 
 function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer" id="footer">
       <Container>
         <Row>
           <Col xs={12} sm={6} md={4} lg={3}>

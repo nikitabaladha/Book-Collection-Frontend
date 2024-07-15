@@ -1,15 +1,15 @@
 import React from "react";
 import "./Genre.css";
-import horrorImage from "../../images/horror-1.png";
-import historyImage from "../../images/history-1.png";
-import mystery from "../../images/mystery-1.png";
-import romanceImage from "../../images/romance-1.png";
-import scienceFictionImage from "../../images/science-fiction-1.png";
-import selfHelpImage from "../../images/self-help-1.png";
+import horrorImage from "../../images/horror.png";
+import historyImage from "../../images/history.png";
+import mystery from "../../images/mystery.png";
+import romanceImage from "../../images/romance.png";
+import scienceFictionImage from "../../images/science-fiction.png";
+import selfHelpImage from "../../images/self-help.png";
 
 const Genre = () => {
   return (
-    <div>
+    <>
       <div id="Genre" className="container-fluid">
         <div id="Genre-heading">
           <h4>Find Your Favorite Genre !</h4>
@@ -97,7 +97,7 @@ const Genre = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
