@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import getAPI from "../../Api/axiosGet";
 import noBookFound from "../../images/bookNotFound.png";
+import "./SearchList.css";
 
 const SearchList = () => {
   const [searchParams] = useSearchParams();
@@ -35,7 +36,7 @@ const SearchList = () => {
   return (
     <div className="container mt-4">
       {books.length > 0 && (
-        <h3 className="heading">Your search result is here</h3>
+        <h3 id="search-heading">Your search result is here...</h3>
       )}
       {hasError ? (
         <div className="no-book-found notfound-container">

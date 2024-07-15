@@ -4,7 +4,7 @@ import "./About.css";
 
 function About() {
   return (
-    <div id="aboutUs" className="container">
+    <div id="aboutUs" className="about-container-fluid">
       <div className="row container-fluid m-0 p-0">
         <div className="col-md-6 d-flex align-items-center justify-content-center">
           <img src={AboutUsImage} alt="About Us" className="img-fluid" />

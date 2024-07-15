@@ -1,5 +1,7 @@
-.heading {
+#search-heading {
   font-family: Georgia, "Times New Roman", Times, serif;
+  color: #0d4278;
+  margin-bottom: 20px;
 }
 
 .card {
@@ -42,26 +44,6 @@
   margin: 0 auto;
   height: 20%;
   margin-bottom: 20px;
-}
-
-.btn-primary {
-  background-color: green;
-  border: none;
-  color: #fff;
-}
-
-.btn-primary:hover {
-  background-color: rgb(2, 100, 2);
-}
-
-.btn-danger {
-  background-color: #dc3545;
-  border: none;
-  color: #fff;
-}
-
-.btn-danger:hover {
-  background-color: #8d0614;
 }
 
 .my-hover-effect:hover {

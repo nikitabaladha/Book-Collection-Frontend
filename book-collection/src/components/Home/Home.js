@@ -5,7 +5,7 @@ import Navbar from "../Navbar/Navbar.js";
 import Genre from "../Genre/Genre.js";
 import Footer from "../Footer/Footer.js";
 import About from "../About/About.js";
-
+import AllBooks from "../AllBooks/AllBooks.js";
 const Home = () => {
   return (
     <div>
@@ -21,6 +21,7 @@ const Home = () => {
       </div>
 
       <Genre />
+      <AllBooks />
       <About />
 
       <Footer />
