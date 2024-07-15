@@ -1,9 +1,10 @@
-#Genre {
+.Genre-container {
   height: 350px;
 }
 
 #Genre .Genre-card {
   width: 13rem;
+  margin: 10px;
   border: none;
   align-items: center;
 }

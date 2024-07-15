@@ -20,3 +20,7 @@ btn btn-primary {
   margin-top: 5px;
   text-transform: capitalize;
 }
+
+.asking-text {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}

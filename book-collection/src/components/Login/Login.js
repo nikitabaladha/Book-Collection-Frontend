@@ -97,7 +97,7 @@ const Login = ({ onSignupClick, onSuccess }) => {
         <button type="submit" id="submit" className="btn btn-primary mt-2">
           Submit
         </button>
-        <div className="mt-2">
+        <div className="mt-2 asking-text">
           Don't have an account?{" "}
           <span
             className="text-primary"

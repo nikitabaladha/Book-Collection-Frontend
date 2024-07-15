@@ -104,14 +104,20 @@ const Navbar = () => {
               </a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="books">
+              <Link className="nav-link" to="/books">
                 Books
               </Link>
             </li>
             <li className="nav-item">
               <button
                 className="nav-link"
-                onClick={handleModalShow(setShowAddBookModal)}
+                onClick={() => {
+                  if (isLoggedIn) {
+                    handleModalShow(setShowAddBookModal)();
+                  } else {
+                    alert("Please login to add a book.");
+                  }
+                }}
               >
                 Add Book
               </button>
